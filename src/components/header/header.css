@@ -1,0 +1,31 @@
+.navbar{
+    position: fixed;
+    height: 48px;
+    width: 100%;
+    background: white;
+    /* box-shadow: 0 2px 5px 0 rgba(0,0,0, .5); */
+    z-index: 100000;
+}
+
+.navbar-content{
+    padding-left: 300px;
+    margin: 0 1rem;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navigation{
+    visibility: hidden;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar-content{
+        padding: 0;
+    }
+    .navigation{
+        visibility: visible;
+    }
+}

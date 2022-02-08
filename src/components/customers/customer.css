@@ -1,0 +1,46 @@
+.required{
+    color: red;
+}
+
+.table{
+    color: #005050;
+}
+
+.txtcolor{
+    color: #005050;
+}
+
+.tableFixHead {
+    overflow: auto;
+    height: 80vh;
+}
+
+.tableFixHead thead tr {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #005050;
+    color: white;
+    border: none;
+}
+
+.outlined{
+    outline: 1px solid #005050;
+}
+
+.outlined::placeholder{
+    color: #005050;
+}
+
+.center{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deliver-icon{
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-bottom: 0.1rem;
+}

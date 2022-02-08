@@ -1,0 +1,74 @@
+.logo-wrapper {
+    height: 10rem;
+    background-color: #005050;
+    margin-bottom: 80px;
+}
+
+.logo{
+    position: fixed;
+    top: 112px;
+    left: 37px;
+    font-size: larger;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #0D7C66;
+    padding: 30px;
+    border-radius: 50px;
+}
+
+.text-decoration{
+    text-decoration: none;
+}
+
+.sidebar{
+    background: white;
+    position: fixed;
+    height: 100%;
+    width: 300px;
+    z-index: 1000000;
+}
+
+.content div{
+    margin: 5px 20px;
+    padding: 20px;
+    color: #005050;
+    font-weight: bold;
+}
+
+.content div:hover {
+    background-color: #0D7C66;
+    /* background-color: #005050; */
+    color: white;
+    border-radius: 8px;
+}
+
+.active div {
+    background-color: #005050;
+    /* background-color: #0D7C66; */
+    color: white;
+    border-radius: 8px;
+}
+
+.icon{
+    height: 2rem;
+    width: 2rem;
+    margin-right: 1rem;
+}
+
+.footer{
+    position: fixed;
+    bottom: 5px;
+    display: flex;
+    justify-content: center;
+    width: 290px;
+    color: #005050;
+}
+
+@media only screen and (max-width: 768px) {
+    .sidebar{
+        visibility: hidden;
+    }
+}
