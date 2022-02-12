@@ -210,7 +210,7 @@ export default function AddCustomer() {
                                     value={selectedProduct[index].product_price === "" ? "" : selectedProduct[index].product_price + " Taka"}
                                 />
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-md-2">
                                 <label htmlFor="qty" className="form-label">
                                     Order Quantity<span className="required">*</span>
                                 </label>
@@ -224,7 +224,7 @@ export default function AddCustomer() {
                                     }
                                 />
                             </div>
-                            <div className="col-md-1 mb-3">
+                            <div className="col-md-2 mb-3">
                                 <label htmlFor="address" className="form-label">
                                     Delete Row
                                 </label>

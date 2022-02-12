@@ -48,7 +48,7 @@ export default function ShowCustomers() {
     };
 
     return (
-        <div className="card border-0 me-4">
+        <div className="card border-0">
             <div className="card-body m-2">
                 {customers ? (
                     <React.Fragment>
