@@ -45,6 +45,7 @@ export default function ShowCustomers() {
         setPaginationNo(paginationNo + 1);
         setStartFrom(endFrom);
         setEndFrom(endFrom + limit);
+        console.log(customers);
     };
 
     return (
@@ -82,18 +83,18 @@ export default function ShowCustomers() {
                             <table className="table table-hover align-middle mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col" className="text-center">Customer Name</th>
-                                        <th scope="col" className="text-center">Address</th>
-                                        <th scope="col" className="text-center">Contact No.</th>
-                                        <th scope="col" className="text-center">Product Details</th>
-                                        <th scope="col" className="text-center">Order Date</th>
-                                        <th scope="col" className="text-center">Status</th>
-                                        <th scope="col" className="text-center">Action</th>
+                                        <th scope="col" className="text-center align-middle col-md-3">Customer Name</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Address</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Contact No.</th>
+                                        <th scope="col" className="text-center align-middle col-md-3">Product Details</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Order Date</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Status</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {customers
-                                        .sort((a,b) => (a.order_date < b.order_date) ? 1 : ((b.order_date < a.order_date) ? -1 : 0))
+                                        .sort((a,b) => (a.createdAt < b.createdAt) ? 1 : ((b.createdAt < a.createdAt) ? -1 : 0))
                                         .filter(customer => (
                                             customer.customer_name.toLowerCase().includes(searchedCustomers.toLowerCase()) ||
                                             customer.customer_address.toLowerCase().includes(searchedCustomers.toLowerCase()) ||
@@ -109,7 +110,8 @@ export default function ShowCustomers() {
                                                 needReload={needReload}
                                                 setNeedReload={setNeedReload}
                                             />
-                                        ))}
+                                        ))
+                                    }
                                 </tbody>
                                 <nav aria-label="Page navigation example">
                                     <ul className="pagination">

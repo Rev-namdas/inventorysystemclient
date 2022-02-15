@@ -42,7 +42,7 @@ export default function Dashboard() {
     );
 
     return (
-        <div>
+        <div className="dashboard-container">
             <div className="card card-wrapper border-0">
                 <div className="card-body">
                     <div className="row align-center">

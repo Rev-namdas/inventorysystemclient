@@ -9,7 +9,7 @@
 
 .tableFixHead {
     overflow: auto;
-    height: 80vh;
+    height: calc(100vh - 190px);
 }
 
 .tableFixHead thead tr {
@@ -40,7 +40,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 90vh;
+    height: calc(100vh - 100px);
 }
 
 .layout-img{

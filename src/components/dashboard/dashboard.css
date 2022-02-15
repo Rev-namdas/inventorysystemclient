@@ -1,6 +1,11 @@
 .card-wrapper{
-    margin-top: -0.6em;
-    height: 90vh;
+    /* margin-top: -0.6em; */
+    /* height: calc(100vh - 80px); */
+    height: 100%;
+}
+
+.dashboard-container{
+    height: 100%;
 }
 
 .align-center{
@@ -9,9 +14,12 @@
     align-items: center;
 }
 
+.box, .box-label{
+    width: 16rem;
+}
+
 .box{
     height: 150px;
-    width: 300px;
     /* background-color: rgb(0, 169, 236); */
     /* background-color: #005050; */
     background-color: #0D7C66;
@@ -36,7 +44,6 @@
     /* background-color: #1A7699; */
     background-color: #005050;
     color: white;
-    width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
