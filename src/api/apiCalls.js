@@ -15,3 +15,4 @@ export const addCustomer = (customerdetails) => axios.post(`${URL}/customer/crea
 export const updateStock = (products) => axios.post(`${URL}/customer/updatestock`, products)
 export const deleteCustomer = (id) => axios.delete(`${URL}/customer/delete/${id}`)
 export const updateDeliveryStatus = (details) => axios.patch(`${URL}/customer/updatedeliverystatus`, details)
+export const productWiseSearch = (details) => axios.post(`${URL}/customer/productwise`, details)

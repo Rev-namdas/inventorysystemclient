@@ -1,123 +1,102 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as api from "../../api/apiCalls";
+import EachRow from "./EachRow";
 
 export default function Report() {
+    const report_options = ['Product Wise', 'User Wise']
+    const [reportSelection, setReportSelection] = useState()
+    const [productSelection, setProductSelection] = useState()
+    const [products, setProducts] = useState()
+    const [productDetails, setProductDetails] = useState([])
+
+    const fetchProducts = async () => {
+        const res = await api.fetchProducts();
+        setProducts(res.data);
+    };
+
+    useEffect(
+        () => {
+            fetchProducts();
+        },
+        //eslint-disable-next-line
+        []
+    );
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const details = {
+            product: productSelection
+        }
+
+        const res = await api.productWiseSearch(details)
+        setProductDetails(res.data)
+        setProductSelection("")
+    }
+
     return (
         <div className="card border-0 me-4">
-            <div className="card-body"></div>
+            <div className="card-body">
+                <div className="row mt-2">
+                    <div className="col-md-5">
+                        <select 
+                            className="form-select outlined"
+                            onChange={(e) => setReportSelection(e.target.value)}
+                        >
+                            <option defaultValue>Select Report Type...</option>
+                            {report_options.map((each, index) => (
+                                <option key={index} value={each}>
+                                    {each}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md-5">
+                        <select 
+                            className="form-select outlined"
+                            onChange={(e) => setProductSelection(e.target.value)}
+                        >
+                            <option defaultValue>Select Product...</option>
+                            {products && products.map((each, index) => (
+                                <option key={index} value={each.product_name}>
+                                    {each.product_name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="col-md-2">
+                        <button className="btn btn-success form-control" onClick={handleSubmit}>Search</button>
+                    </div>
+                </div>
+                <div>
+                    {reportSelection === "Product Wise" && (
+                        <div className="table-responsive tableFixHead">
+                            <table className="table table-hover align-middle mt-3">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" className="text-center align-middle col-md-3">Customer Name</th>
+                                        <th scope="col" className="text-center align-middle col-md-3">Address</th>
+                                        <th scope="col" className="text-center align-middle col-md-2">Contact No.</th>
+                                        <th scope="col" className="text-center align-middle col-md-3">Product Details</th>
+                                        <th scope="col" className="text-center align-middle col-md-1">Order Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {productDetails.map((each, index) => (
+                                        <EachRow
+                                            key={index}
+                                            each={each}
+                                        />
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                    {reportSelection === "User Wise" && (
+                        <div>User Wise</div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
-
-// import React, { useState } from "react";
-
-// export default function Report() {
-//     const [needReload, setNeedReload] = useState(false);
-//     const [limit, setLimit] = useState(10);
-//     const [startFrom, setStartFrom] = useState(0);
-//     const [endFrom, setEndFrom] = useState(limit);
-//     const [paginationNo, setPaginationNo] = useState(1);
-//     const [totalRows, setTotalRows] = useState(0);
-
-//     const handleLimitChange = (val) => {
-//         setLimit(val);
-//         setEndFrom(val);
-//     };
-
-//     const handlePrevPage = () => {
-//         setPaginationNo(paginationNo - 1);
-//         setEndFrom(startFrom);
-//         setStartFrom(startFrom - limit);
-//     };
-
-//     const handleNextPage = () => {
-//         setPaginationNo(paginationNo + 1);
-//         setStartFrom(endFrom);
-//         setEndFrom(endFrom + limit);
-//     };
-
-//     return (
-//         <div className="container card">
-//             <div className="card-body">
-//                 <div className="row mt-2">
-//                     <div className="col-md-6">
-//                         <select
-//                             className="form-select outlined"
-//                             onChange={(e) =>
-//                                 handleLimitChange(Number(e.target.value))
-//                             }
-//                         >
-//                             <option defaultValue>Choose Highest Row...</option>
-//                             {[10, 20, 30, 40, 50, 100].map((each, index) => (
-//                                 <option key={index} value={each}>
-//                                     {each} out of {totalRows}
-//                                 </option>
-//                             ))}
-//                         </select>
-//                     </div>
-//                     <div className="col-md-6">
-//                         <input
-//                             type="text"
-//                             className="form-control outlined"
-//                             placeholder="Search By Customer Details"
-//                         />
-//                     </div>
-//                 </div>
-//             <div className="table-responsive tableFixHead">
-//                 <table className="table table-hover align-middle mt-3">
-//                     <thead>
-//                         <tr>
-//                             <th scope="col" className="text-center">Customer Name</th>
-//                             <th scope="col" className="text-center">Address</th>
-//                             <th scope="col" className="text-center">Contact No.</th>
-//                             <th scope="col" className="text-center">Product Details</th>
-//                             <th scope="col" className="text-center">Order Date</th>
-//                             <th scope="col" className="text-center">Status</th>
-//                             <th scope="col" className="text-center">Delivery</th>
-//                             <th scope="col" className="text-center">Action</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-
-//                     </tbody>
-//                     <nav aria-label="Page navigation example">
-//                         <ul className="pagination">
-//                             <li className="page-item">
-//                                 <button
-//                                     className="page-link txtcolor"
-//                                     onClick={handlePrevPage}
-//                                     disabled={
-//                                         paginationNo === 1
-//                                             ? true
-//                                             : false
-//                                     }
-//                                 >
-//                                     Previous
-//                                 </button>
-//                             </li>
-//                             <li className="page-item">
-//                                 <button className="page-link txtcolor">
-//                                     {paginationNo}
-//                                 </button>
-//                             </li>
-//                             <li className="page-item">
-//                                 <button
-//                                     className="page-link txtcolor"
-//                                     onClick={handleNextPage}
-//                                     disabled={
-//                                         totalRows / limit ===
-//                                         paginationNo
-//                                             ? true
-//                                             : false
-//                                     }
-//                                 >
-//                                     Next
-//                                 </button>
-//                             </li>
-//                         </ul>
-//                     </nav>
-//                 </table>
-//             </div>
-//             </div>
-//         </div>
-//     );
-// }

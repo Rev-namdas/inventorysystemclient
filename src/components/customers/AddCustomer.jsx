@@ -82,6 +82,7 @@ export default function AddCustomer() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        
         let canProceed = true;
         let passingState = {
             name: customerName,
@@ -90,6 +91,15 @@ export default function AddCustomer() {
             products: selectedProduct,
             orderdate: todayDate()
         };
+        
+        const contact_number_format = /^[0-9]{11}$/;
+        if(customerNumber.match(contact_number_format))
+        {
+            canProceed = true;
+        } else {
+            alert("Invalid Contact No. Format (Ex: 01717171717)")
+            canProceed = false;
+        }
 
         for (let i = 0; i < selectedProduct.length; i++) {
             if (

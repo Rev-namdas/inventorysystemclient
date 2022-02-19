@@ -71,10 +71,10 @@ export default function EachProduct({
             ) : (
                 <tr key={index}>
                     <th scope="row">{eachproduct.product_name}</th>
-                    <td className="text-center">{eachproduct.product_price}</td>
-                    <td className="text-center">{eachproduct.product_quantity}</td>
-                    <td className="text-center">{availableQty}</td>
-                    <td className="text-center">{eachproduct.order_quantity}</td>
+                    <th className="text-center">Tk.{eachproduct.product_price}</th>
+                    <th className="text-center">{eachproduct.product_quantity === 0 ? "-" : eachproduct.product_quantity}</th>
+                    <th className="text-center">{availableQty === 0 ? "-" : availableQty}</th>
+                    <th className="text-center">{eachproduct.order_quantity === 0 ? "-" : eachproduct.order_quantity}</th>
                     <td>
                         <div className="text-center">
                             <button
