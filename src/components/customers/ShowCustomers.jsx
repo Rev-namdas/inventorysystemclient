@@ -138,7 +138,7 @@ export default function ShowCustomers() {
                                                 className="page-link txtcolor"
                                                 onClick={handleNextPage}
                                                 disabled={
-                                                    totalRows / limit ===
+                                                    (totalRows < 10) ? 10 : totalRows / limit ===
                                                     paginationNo
                                                         ? true
                                                         : false

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as api from "../../api/apiCalls";
 import Error from '../Error/Error'
 import { v4 as uuid } from "uuid";
-import { todayDate } from "../common/todayDate"
+import { todayDate, todayMonth } from "../common/todayDate"
 import "./customer.css"
 
 export default function AddCustomer() {
@@ -89,7 +89,8 @@ export default function AddCustomer() {
             address: customerAddress,
             contact: customerNumber,
             products: selectedProduct,
-            orderdate: todayDate()
+            orderdate: todayDate(),
+            ordermonth: todayMonth()
         };
         
         const contact_number_format = /^[0-9]{11}$/;

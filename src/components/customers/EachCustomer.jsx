@@ -53,7 +53,7 @@ export default function EachCustomer({ each, needReload, setNeedReload }) {
                 <div className="text-center">
                     <button
                         onClick={() => handleDelete(each._id, each.products)}
-                        className="btn btn-outline-primary"
+                        className="btn btn-danger"
                     >
                         Delete
                     </button>

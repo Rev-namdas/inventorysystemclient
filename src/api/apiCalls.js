@@ -11,8 +11,10 @@ export const updateProduct = (updatedProductInfo) => axios.patch(`${URL}/product
 
 //customers api
 export const fetchCustomers = () => axios.get(`${URL}/customer/all`)
+export const fetchCustomerNames = () => axios.get(`${URL}/customer/names`)
 export const addCustomer = (customerdetails) => axios.post(`${URL}/customer/create`, customerdetails)
 export const updateStock = (products) => axios.post(`${URL}/customer/updatestock`, products)
 export const deleteCustomer = (id) => axios.delete(`${URL}/customer/delete/${id}`)
 export const updateDeliveryStatus = (details) => axios.patch(`${URL}/customer/updatedeliverystatus`, details)
 export const productWiseSearch = (details) => axios.post(`${URL}/customer/productwise`, details)
+export const userWiseSearch = (details) => axios.post(`${URL}/customer/userwise`, details)
