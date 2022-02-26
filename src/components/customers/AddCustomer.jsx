@@ -19,6 +19,7 @@ export default function AddCustomer() {
     };
     const [selectedProduct, setSelectedProduct] = useState([initialState]);
     const [error, setError] = useState({ status: false, message: "" })
+    const [generatedText, setGeneratedText] = useState("")
 
     const fetchProducts = async () => {
         const res = await api.fetchProducts();
@@ -79,6 +80,28 @@ export default function AddCustomer() {
         setSelectedProduct(updateProducts);
     };
 
+    const handleGenerateText = (e) => {
+        e.preventDefault();
+
+        const txt = generatedText.split("\n")
+
+        setCustomerName(txt[0].split(":")[1].trim())
+        setCustomerNumber(txt[1].split(":")[1].trim())
+        setCustomerAddress(txt[2].split(":")[1].trim())
+
+        const state = [...selectedProduct]
+        let index = 0
+        for(let i=5; i<=txt.length; i+=2) {
+            state[index].product_name = txt[i-2].split(":")[1].trim();
+            let chosenproduct = products.filter((each) => each.product_name === txt[i-2].split(":")[1].trim())[0];
+            state[index].product_price = chosenproduct.product_price;
+            state[index]._id = chosenproduct._id;
+            state[index].order_quantity = txt[i-1].split(":")[1].trim();
+            index++
+        }
+        setSelectedProduct(state)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -124,8 +147,11 @@ export default function AddCustomer() {
             setCustomerAddress("")
             setCustomerNumber("")
             setSelectedProduct([initialState])
+            setGeneratedText("")
         }
     };
+
+
 
     return (
         <div className="container card border-0">
@@ -249,20 +275,41 @@ export default function AddCustomer() {
                             </div>
                         </div>
                     ))}
-                    <button
-                        type="button"
-                        className="btn btn-success me-3 mb-3"
-                        onClick={handleNewProduct}
-                    >
-                        Add Product
-                    </button>
-                    <button
-                        type="submit"
-                        className="btn btn-primary me-3 mb-3"
-                        onClick={handleSubmit}
-                    >
-                        Submit
-                    </button>
+                    <div className="row mb-3">
+                        <div className="col-md-6">
+                            <textarea 
+                                type="text" 
+                                className="form-control" 
+                                rows="5"
+                                placeholder="Paste your details"
+                                onChange={(e) => setGeneratedText(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-md-6 align-center">
+                            <button
+                                type="button"
+                                className="col me-3 btn btn-success"
+                                onClick={handleNewProduct}
+                            >
+                                Add Product
+                            </button>
+                            <button 
+                                type="submit" 
+                                className="col me-3 btn btn-secondary" 
+                                onClick={handleGenerateText}
+                            >
+                                Generate
+                            </button>
+                            <button
+                                type="submit"
+                                className="col btn btn-primary"
+                                onClick={handleSubmit}
+                            >
+                                Submit
+                            </button>
+                            
+                        </div>
+                    </div>
                 </form>
                 {error.status && <Error message={error.message} />}
             </div>

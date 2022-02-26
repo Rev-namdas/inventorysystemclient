@@ -92,8 +92,12 @@ export default function Report() {
                 isLoading
                 ?
                 (
-                    <div className="center">
-                        <LoadingSpinner />
+                    <div className="card border-0">
+                        <div className="card-body">
+                            <div className="center">
+                                <LoadingSpinner />
+                            </div>
+                        </div>
                     </div>
                 )
                 :

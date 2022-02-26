@@ -408,13 +408,13 @@ export default function ShowProducts() {
                             <table className="table table-hover align-middle mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col" className="text-center">Name</th>
-                                        <th scope="col" className="text-center">Price</th>
-                                        <th scope="col" className="text-center">Stocked</th>
-                                        <th scope="col" className="text-center">Available</th>
-                                        <th scope="col" className="text-center">Sold</th>
-                                        <th scope="col" className="text-center">Action</th>
-                                        <th scope="col" className="text-center">Delete</th>
+                                        {
+                                            ['Name', 'Price', 'Stocked', 
+                                            'Available', 'Sold', 'Action', 'Delete'
+                                            ].map(each => (
+                                                <th scope="col" className="text-center">{each}</th>
+                                            ))
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -430,7 +430,8 @@ export default function ShowProducts() {
                                                 eachproduct={eachproduct}
                                                 setNeedReload={setNeedReload}
                                             />
-                                        ))}
+                                        ))
+                                    }
                                 </tbody>
                                 <nav aria-label="Page navigation example">
                                     <ul className="pagination">

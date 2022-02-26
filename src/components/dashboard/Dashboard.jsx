@@ -7,6 +7,7 @@ import {
 } from "react-icons/md";
 import { RiShoppingBag3Fill } from "react-icons/ri";
 import { BsPeopleFill } from "react-icons/bs";
+import Box from "./Box";
 
 export default function Dashboard() {
     const [totalProducts, setTotalProducts] = useState(0);
@@ -41,47 +42,42 @@ export default function Dashboard() {
         []
     );
 
+    const box_contents = [
+        {
+            icon: <MdLocalGroceryStore />,
+            quantity: totalProducts,
+            label: "Total Products"
+        },
+        {
+            icon: <RiShoppingBag3Fill />,
+            quantity: soldProducts,
+            label: "Sold Products"
+        },
+        {
+            icon: <MdProductionQuantityLimits />,
+            quantity: outOfStock,
+            label: "Out Of Stock"
+        },
+        {
+            icon: <BsPeopleFill />,
+            quantity: totalCustomers,
+            label: "Satisfied Customers"
+        }
+    ]
+
     return (
         <div className="dashboard-container">
             <div className="card card-wrapper border-0">
                 <div className="card-body">
                     <div className="row align-center">
-                        <div className="col-md-3 box">
-                            <div className="box-info">
-                                <span className="dashboard-icon">
-                                    <MdLocalGroceryStore />
-                                </span>{" "}
-                                {totalProducts}
-                            </div>
-                            <div className="box-label">Total Products</div>
-                        </div>
-                        <div className="col-md-3 box">
-                            <div className="box-info">
-                                <span className="dashboard-icon">
-                                    <RiShoppingBag3Fill />
-                                </span>{" "}
-                                {soldProducts}
-                            </div>
-                            <div className="box-label">Sold Products</div>
-                        </div>
-                        <div className="col-md-3 box">
-                            <div className="box-info">
-                                <span className="dashboard-icon">
-                                    <MdProductionQuantityLimits />
-                                </span>{" "}
-                                {outOfStock}
-                            </div>
-                            <div className="box-label">Out Of Stock</div>
-                        </div>
-                        <div className="col-md-3 box">
-                            <div className="box-info">
-                                <span className="dashboard-icon">
-                                    <BsPeopleFill />
-                                </span>{" "}
-                                {totalCustomers}
-                            </div>
-                            <div className="box-label">Satisfied Customers</div>
-                        </div>
+                        {/* 4 Boxes */}
+                        {box_contents.map(each => (
+                            <Box 
+                                icon={each.icon} 
+                                quantity={each.quantity} 
+                                label={each.label} 
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
